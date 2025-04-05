@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,700");
+
+body {
+    padding: 0;
+    margin: 0;
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial;
+}
+
+section.page-header {
+	color: #fff;
+	text-align: center;
+	background: #b5d1e5;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #86aecc, #b5d1e5);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #86aecc, #b5d1e5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    margin: 40px 0 60px;
+}
+section.page-header .name {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	display: table;
+	margin: auto;
+	font-size: 23px;
+	line-height: 0px;
+	font-weight: 300;
+	text-align: right;
+}
+section.page-header .col-md-12 {
+	position: relative;
+}
+section.page-header .col-md-2 {
+	text-align: left;
+}
+
+section.page-header .btn {
+	margin: 10px 0 10px 0;
+	padding: 5px 15px 5px 15px;
+	font-size: 20px;
+	font-weight: 100;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    background-color: rgba(255,255,255,0.2);
+    border-color: rgba(255,255,255,0.3);
+}
+section.page-header .btn:hover {
+	color: rgba(255,255,255,0.8);
+    background-color: rgba(255,255,255,0.5);
+	-webkit-transition: background-color 200ms linear;
+    -ms-transition: background-color 200ms linear;
+    transition: background-color 200ms linear;
+}
+section.page-usage .container:last-child {
+	margin-top: 60px;
+}
+
+/* Form style */
+label {
+	order: 1;
+	flex-direction: row;
+	flex: 1 1 auto;
+	font-size: 12px;
+	color: #333;
+}
+
+input {
+	order: 2;
+	flex-direction: row;
+	flex: 1 1 auto;
+}
+
+.valid-message {
+	order: 3;
+	flex-direction: row;
+	flex: 1 1 auto;
+}
+
+.row {
+	margin: 0;
+}
+
+form {
+	margin: auto;
+	width: 50%;
+	padding: 20px;
+	
+	border-radius: 20px 20px 20px 20px;
+	-moz-border-radius: 20px 20px 20px 20px;
+	-webkit-border-radius: 20px 20px 20px 20px;
+	border: 1px solid #eee;
+	-webkit-box-shadow: 0px 6px 11px 1px rgba(0,0,0,0.17);
+	-moz-box-shadow: 0px 6px 11px 1px rgba(0,0,0,0.17);
+	box-shadow: 0px 6px 11px 1px rgba(0,0,0,0.17);
+}
+
+form .col-md-12,
+form .col-md-8,
+form .col-md-4 {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: row wrap;
+	flex-flow: row wrap;
+	justify-content: space-around;
+}
+
+form .row:not(:first-child) {
+	margin-top: 20px;
+}
+form .row:not(:first-child) .col-md-12 label,
+form .row:not(:first-child) .col-md-8 label,
+form .row:not(:first-child) .col-md-4 label {
+	margin-bottom: 3px;
+}
+
+form .row:last-child {
+	width: 100%;
+}
+
+form .row:last-child button {
+	text-transform: uppercase;
+	padding: 10px 30px 10px 30px;
+	font-size: 18px;
+}

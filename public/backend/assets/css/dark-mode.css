@@ -1,0 +1,233 @@
+:root {
+    --primary: #292525;
+    --bg-dark: #000 !important;
+}
+
+.dark-mode .bg-primary {
+    background: rgb(0, 0, 0) !important;
+}
+
+.dark-mode {
+    background-color: var(--bg-dark) !important;
+}
+
+.dark-mode #navbarBlur {
+    background-color: var(--primary) !important;
+}
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode h5,
+.dark-mode h6 {
+    color: #fff !important;
+}
+
+.dark-mode .table>:not(caption)>*>* {
+    background-color: var(--primary) !important;
+    color: #fff !important;
+}
+
+.dark-mode table .dark-mode thead th .dark-mode tbody td {
+    background-color: var(--primary) !important;
+    color: #fff !important;
+}
+
+.dark-mode .card {
+    background-color: var(--primary) !important;
+    border-radius: 10px;
+}
+
+.dark-mode .card-header {
+    background-color: var(--primary) !important;
+}
+
+.dark-mode .card-body {
+    background-color: var(--primary) !important;
+    border-radius: 10px;
+}
+
+.dark-mode .list-group-item {
+    background-color: var(--primary) !important;
+    border-radius: 10px;
+}
+
+.dark-mode .bg-body,
+.dark-mode .bg-white {
+    background: var(--primary) !important;
+}
+
+.dark-mode .navbar .nav-link {
+    color: #fff;
+}
+
+.dark-mode .navbar .navbar-brand {
+    color: #fff;
+}
+
+.dark-mode .navbar-vertical .navbar-nav .nav-item .collapse .nav .nav-item .nav-link,
+.navbar-vertical .navbar-nav .nav-item .collapsing .nav .nav-item .nav-link {
+    color: #fff !important;
+}
+
+.dark-mode .navbar-vertical .navbar-nav .nav-link[data-bs-toggle=collapse]::after {
+    color: #fff !important;
+}
+
+.dark-mode .navbar-vertical .navbar-nav .nav-item .collapse .nav .nav-item .nav-link:before,
+.navbar-vertical .navbar-nav .nav-item .collapsing .nav .nav-item .nav-link:before {
+    background-color: #fff !important;
+}
+
+.dark-mode .dropdown-menu {
+    background-color: var(--primary) !important;
+    border-radius: 10px;
+    border: 1px solid #fff !important;
+    color: #fff !important;
+}
+
+.dark-mode .dropdown-item {
+    background-color: var(--primary) !important;
+    color: #fff !important;
+}
+
+.dark-mode .dropdown-item:hover {
+    background-color: var(--primary) !important;
+    color: #fff !important;
+}
+
+.dark-mode p {
+    color: #fff;
+}
+
+.dark-mode .form-control {
+    background-color: var(--primary) !important;
+    color: #fff !important;
+    border: 1px solid #fff !important;
+}
+
+.dark-mode label {
+    color: #fff !important;
+}
+
+.dark-mode svg {
+    stroke: #fff !important;
+    fill: #fff !important;
+}
+
+.dark-mode .paginate-component {
+    color: #fff !important;
+}
+
+.dark-mode .dropify-wrapper {
+    background-color: var(--primary) !important;
+    border: 1px solid #fff !important;
+}
+
+.dark-mode .select2-dropdown {
+    background-color: var(--primary) !important;
+    color: #fff !important;
+    border: 1px solid #fff !important;
+}
+
+.dark-mode .select2-search__field {
+    background-color: var(--primary) !important;
+    color: #fff !important;
+    border: 1px solid #fff !important;
+}
+
+.dark-mode .select2-container .select2-selection--single {
+    background-color: var(--primary) !important;
+    color: #fff !important;
+    border: 1px solid #fff !important;
+}
+
+.dark-mode .select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #fff !important;
+}
+
+.dark-mode .swal2-title {
+    color: #000 !important;
+}
+
+.dark-mode .modal-content {
+    background-color: var(--primary) !important;
+    color: #fff !important;
+    border-radius: 10px;
+}
+
+.dark-mode .modal-header {
+    background-color: var(--primary) !important;
+    color: #fff !important;
+    border-radius: 10px;
+}
+
+.dark-mode .dropify-wrapper .dropify-preview {
+    background-color: var(--primary) !important;
+    border: 1px solid #fff !important;
+}
+.dark-mode .form-switch .form-check-input:checked {
+    background-color: #3055dc !important;
+    border-color: #fff !important;
+}
+.dark-mode .customer-header {
+    background-color: var(--primary) !important;
+    color: #fff !important;
+    border-radius: 10px;
+}
+.dark-mode .info-section {
+    background-color: var(--primary) !important;
+    color: #fff !important;
+    border-radius: 10px;
+}
+.dark-mode .financial-card {
+    background-color: var(--primary) !important;
+    color: #fff !important;
+    border: 1px solid #fff !important;
+}
+.dark-mode .financial-title {
+    background-color: var(--primary) !important;
+    color: #fff !important;
+    border-radius: 10px;
+}   
+.dark-mode .detail-row {
+    background-color: var(--primary) !important;
+    color: #fff !important;
+    border-radius: 10px;
+}
+.dark-mode .detail-value {
+    background-color: var(--primary) !important;
+    color: #fff !important;
+    border-radius: 10px;
+}
+.dark-mode .btn-outline-secondary {
+    background-color: var(--primary) !important;
+    color: #fff !important;
+    border-radius: 10px;
+}
+.dark-mode .layout-btn {
+    color: #fff !important;
+    border-radius: 10px;
+}
+.dark-mode .customer-card {
+    background-color: #fff !important;
+    color: #fff !important;
+    border-radius: 10px;
+}
+.dark-mode .user-card{
+    background-color: var(--primary) !important;
+    color: #fff !important;
+    border-radius: 10px;
+    border: 1px solid #fff !important;
+}
+.dark-mode .list-group {
+    background-color: var(--primary) !important;
+    color: #fff !important;
+    border-radius: 10px;
+}
+.dark-mode .income-details {
+    background-color: var(--primary) !important;
+    color: #fff !important;
+    border-radius: 10px;
+}

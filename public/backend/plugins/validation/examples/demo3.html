@@ -1,0 +1,101 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>jquery.formValid - demo 3</title>
+    <link rel="stylesheet" type="text/css" href="../lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../dist/jquery.formValid.css">
+    <link rel="stylesheet" type="text/css" href="css/template.css">
+    <link rel="stylesheet" type="text/css" href="css/demo.css">
+</head>
+<body>
+
+    <section class="page-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-2">
+					<a href="https://mrygielski.github.io/jquery.formValid/" class="btn">Back</a>      
+				</div>
+				<div class="col-md-10">
+					<h1 class="name">jquery.formValid - demo 3</h1>
+				</div>
+			</div>
+		</div>
+    </section>
+    
+    <section class="page-usage">
+        <div class="container">
+			<h4>Defining your own regex</h4>
+		
+			<!-- HTML - begin -->
+			<form method="post" id="form">
+				<div class="row">
+					<div class="col-md-12">
+						<input type="text" id="labelSubject" class="form-control" data-field="subject">
+						<label for="labelName">Only upper-case *</label>
+						<div class="valid-message"></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<button class="btn btn-primary" type="submit">CHECK</button>
+					</div>
+				</div>
+			</form>	   
+		    <!-- HTML - end -->
+			
+        </div>
+		
+		<script src="../lib/jquery/dist/jquery.min.js"></script>
+		<script src="../lib/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="../dist/jquery.formValid.js"></script>
+		<script src="js/demo3.js"></script>
+		
+		<div class="container">
+		<p>Html:</p>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">method</span>=<span class="hljs-value">"post"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"form"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"row"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"col-md-12"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"labelSubject"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"form-control"</span> <span class="hljs-attribute">data-field</span>=<span class="hljs-value">"subject"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"labelSubject"</span>&gt;</span>Only upper-case *<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"valid-message"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"row"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"col-md-12"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"btn btn-primary"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"submit"</span>&gt;</span>CHECK<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
+</code></pre>
+<p>JavaScript:</p>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
+   <span class="hljs-keyword">var</span> form = $(<span class="hljs-string">'#form'</span>).formValid({
+    fields: {
+        <span class="hljs-string">"name"</span>: {
+            <span class="hljs-string">"required"</span>: <span class="hljs-literal">true</span>, 
+            <span class="hljs-string">"tests"</span>: [
+                {
+                    <span class="hljs-string">"regex"</span>: <span class="hljs-string">"^[A-Z]+$"</span>, 
+                    <span class="hljs-string">"message"</span>: <span class="hljs-string">"Only upper-case letter"</span>
+                }
+            ]
+        }
+    }
+});
+
+form.keypress(<span class="hljs-number">300</span>);
+
+$(<span class="hljs-string">'button[type="submit"]'</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    form.test();
+    <span class="hljs-keyword">if</span> (form.errors() == <span class="hljs-number">0</span>) {
+        alert(<span class="hljs-string">'Ok'</span>);
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+});
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
+		</div>
+    </section>
+	
+</body>
+</html>

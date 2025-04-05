@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,700");
+
+body {
+    padding: 0;
+    margin: 0;
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial;
+}
+
+section.page-header {
+	color: #fff;
+	text-align: center;
+	background: #b5d1e5;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #86aecc, #b5d1e5);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #86aecc, #b5d1e5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	padding: 50px 30px 80px 30px;
+    margin: 40px 0 20px;
+}
+section.page-header > .name {
+	font-size: 50px;
+	line-height: 50px;
+	font-weight: 700;
+}
+section.page-header > .desc {
+	font-size: 20px;
+	font-weight: 200;
+	line-height: 20px;
+	color: rgba(255,255,255,0.6);
+	margin-bottom: 40px;
+}
+section.page-usage {
+	margin-bottom: 50px;
+}
+
+.btn {
+	margin: 5px;
+	font-size: 20px;
+	font-weight: 100;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    background-color: rgba(255,255,255,0.2);
+    border-color: rgba(255,255,255,0.3);
+}
+.btn:hover {
+	color: rgba(255,255,255,0.8);
+    background-color: rgba(255,255,255,0.5);
+	-webkit-transition: background-color 200ms linear;
+    -ms-transition: background-color 200ms linear;
+    transition: background-color 200ms linear;
+}
+
+.md-form > .row {
+	margin: 0;
+}
+.md-form > .row > .col-md-8 {
+	padding-left: 0;
+}
+.md-form > .row > .col-md-4 {
+	padding: 0;
+}
+.error input {
+	border-color: #a00 !important;
+}
+.error input[type=text]:focus:not([readonly]) {
+	-webkit-box-shadow: 0 1px 0 0 #a00 !important;
+	box-shadow: 0 1px 0 0 #a00 !important;
+	border-bottom: 1px solid #a00 !important;
+}
+.error input[type=text]:focus:not([readonly])+label {
+	color: #a00 !important;
+}
+.error label {
+	color: #a00 !important;
+}
+.valid-message {
+	display: none;
+}
+.error .valid-message {
+	color: #400;
+	display: block;
+	margin-left: 40px;
+	font-size: 12px;
+	
+	-webkit-animation: message-down .3s ease-out;
+	-moz-animation: message-down .3s ease-out;
+}
+.col-md-4.error .valid-message {
+	margin-left: 0;
+}
+
+@-webkit-keyframes message-down {
+	  0% { opacity: 0; -webkit-transform: translateY(-100%); }   
+	100% { opacity: 1; -webkit-transform: translateY(0); }
+}
+@-moz-keyframes message-down {
+	  0% { opacity: 0; -moz-transform: translateY(-100%); }   
+	100% { opacity: 1; -moz-transform: translateY(0); }
+}

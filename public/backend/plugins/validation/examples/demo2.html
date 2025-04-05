@@ -1,0 +1,282 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>jquery.formValid - demo 2</title>
+    <link rel="stylesheet" type="text/css" href="../lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../dist/jquery.formValid.css">
+    <link rel="stylesheet" type="text/css" href="css/template.css">
+    <link rel="stylesheet" type="text/css" href="css/demo.css">
+</head>
+<body>
+
+    <section class="page-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-2">
+					<a href="https://mrygielski.github.io/jquery.formValid/" class="btn">Back</a>      
+				</div>
+				<div class="col-md-10">
+					<h1 class="name">jquery.formValid - demo 2</h1>
+				</div>
+			</div>
+		</div>
+    </section>
+    
+    <section class="page-usage">
+        <div class="container">
+			<h4>Modifying the change method</h4>
+           
+			<!-- HTML - begin -->
+			<form method="post" id="form">
+				<div class="row">
+					<div class="col-md-12">
+						<input type="text" id="labelName" class="form-control" data-field="name">
+						<label for="labelName">Name *</label>
+						<div class="valid-message"></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<input type="text" id="labelSurname" class="form-control" data-field="surname">
+						<label for="labelSurname">Surname *</label>
+						<div class="valid-message"></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<input type="text" id="labelEmail" class="form-control" data-field="email">
+						<label for="labelEmail">E-mail *</label>
+						<div class="valid-message"></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<input type="text" id="labelPhone" class="form-control" data-field="phone">
+						<label for="labelPhone">Phone number *</label>
+						<div class="valid-message"></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-8 field-street">
+						<input type="text" id="labelStreet" class="form-control" data-field="street">
+						<label for="labelStreet">Street</label>
+						<div class="valid-message"></div>
+					</div>
+					<div class="col-md-4 field-homenumber">
+						<input type="text" id="labelHomeNumber" class="form-control" data-field="homenumber">
+						<label for="labelHomeNumber">Home number</label>
+						<div class="valid-message"></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-8 field-city">
+						<input type="text" id="labelCity" class="form-control" data-field="city">
+						<label for="labelCity">City</label>
+						<div class="valid-message"></div>
+					</div>
+					<div class="col-md-4 field-postcode">
+						<input type="text" id="labelPostCode" class="form-control" data-field="postcode">
+						<label for="labelPostCode">Postcode</label>
+						<div class="valid-message"></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<button class="btn btn-primary" type="submit">SEND</button>
+					</div>
+				</div>
+			</form>	   
+		    <!-- HTML - end -->
+			<p style="text-align: center">Example check the postal codes of cities in Poland. For example, enter: Toruń</p>
+
+        </div>
+		
+		<script src="../lib/jquery/dist/jquery.min.js"></script>
+		<script src="../lib/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="../dist/jquery.formValid.js"></script>
+		<script src="js/demo2.js"></script>
+		
+		<div class="container">
+		<p>Html:</p>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">method</span>=<span class="hljs-value">"post"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"form"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"row"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"col-md-12"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"labelName"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"form-control"</span> <span class="hljs-attribute">data-field</span>=<span class="hljs-value">"name"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"labelName"</span>&gt;</span>Name *<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"valid-message"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"row"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"col-md-12"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"labelSurname"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"form-control"</span> <span class="hljs-attribute">data-field</span>=<span class="hljs-value">"surname"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"labelSurname"</span>&gt;</span>Surname *<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"valid-message"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"row"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"col-md-12"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"labelEmail"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"form-control"</span> <span class="hljs-attribute">data-field</span>=<span class="hljs-value">"email"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"labelEmail"</span>&gt;</span>E-mail *<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"valid-message"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"row"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"col-md-12"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"labelPhone"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"form-control"</span> <span class="hljs-attribute">data-field</span>=<span class="hljs-value">"phone"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"labelPhone"</span>&gt;</span>Phone number *<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"valid-message"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"row"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"col-md-8 field-street"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"labelStreet"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"form-control"</span> <span class="hljs-attribute">data-field</span>=<span class="hljs-value">"street"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"labelStreet"</span>&gt;</span>Street<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"valid-message"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"col-md-4 field-homenumber"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"labelHomeNumber"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"form-control"</span> <span class="hljs-attribute">data-field</span>=<span class="hljs-value">"homenumber"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"labelHomeNumber"</span>&gt;</span>Home number<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"valid-message"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"row"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"col-md-8 field-city"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"labelCity"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"form-control"</span> <span class="hljs-attribute">data-field</span>=<span class="hljs-value">"city"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"labelCity"</span>&gt;</span>City<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"valid-message"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"col-md-4 field-postcode"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"labelPostCode"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"form-control"</span> <span class="hljs-attribute">data-field</span>=<span class="hljs-value">"postcode"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"labelPostCode"</span>&gt;</span>Postcode<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"valid-message"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"row"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"col-md-12"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"btn btn-primary"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"submit"</span>&gt;</span>SEND<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
+</code></pre>
+<p>JavaScript:</p>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
+   <span class="hljs-keyword">var</span> form = $(<span class="hljs-string">'#form'</span>).formValid({
+    fields: {
+        <span class="hljs-string">"name"</span>: {
+            <span class="hljs-string">"required"</span>: <span class="hljs-literal">true</span>, 
+            <span class="hljs-string">"tests"</span>: [
+                {
+                    <span class="hljs-string">"type"</span>: <span class="hljs-string">"null"</span>, 
+                    <span class="hljs-string">"message"</span>: <span class="hljs-string">"Not entered name"</span>
+                }
+            ]
+        },
+        <span class="hljs-string">"surname"</span>: {
+            <span class="hljs-string">"required"</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-string">"tests"</span>: [
+                {
+                    <span class="hljs-string">"type"</span>: <span class="hljs-string">"null"</span>, 
+                    <span class="hljs-string">"message"</span>: <span class="hljs-string">"Not entered surname"</span>
+                }
+            ]
+        },
+        <span class="hljs-string">"email"</span>: {
+            <span class="hljs-string">"required"</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-string">"tests"</span>: [
+                {
+                    <span class="hljs-string">"type"</span>: <span class="hljs-string">"null"</span>, 
+                    <span class="hljs-string">"message"</span>: <span class="hljs-string">"Not entered e-mail adress"</span>
+                },
+                {
+                    <span class="hljs-string">"type"</span>: <span class="hljs-string">"email"</span>, 
+                    <span class="hljs-string">"message"</span>: <span class="hljs-string">"Your email is incorrect"</span>
+                }
+            ]
+        },
+        <span class="hljs-string">"phone"</span>: {
+            <span class="hljs-string">"required"</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-string">"tests"</span>: [
+                {
+                    <span class="hljs-string">"type"</span>: <span class="hljs-string">"null"</span>, 
+                    <span class="hljs-string">"message"</span>: <span class="hljs-string">"Not entered phone number"</span>
+                },
+                {
+                    <span class="hljs-string">"type"</span>: <span class="hljs-string">"phone"</span>, 
+                    <span class="hljs-string">"message"</span>: <span class="hljs-string">"Your phone number is incorrect"</span>
+                }
+            ]
+        },
+        <span class="hljs-string">"street"</span>: {
+            <span class="hljs-string">"required"</span>: <span class="hljs-literal">false</span>,
+            <span class="hljs-string">"tests"</span>: [
+                {
+                    <span class="hljs-string">"type"</span>: <span class="hljs-string">"letters"</span>, 
+                    <span class="hljs-string">"message"</span>: <span class="hljs-string">"Your street is incorrect"</span>
+                }
+            ]
+        },
+        <span class="hljs-string">"homenumber"</span>: {
+            <span class="hljs-string">"required"</span>: <span class="hljs-literal">false</span>,
+            <span class="hljs-string">"tests"</span>: [
+                {
+                    <span class="hljs-string">"type"</span>: <span class="hljs-string">"number"</span>, 
+                    <span class="hljs-string">"message"</span>: <span class="hljs-string">"Incorrect number"</span>
+                }
+            ]
+        },
+        <span class="hljs-string">"city"</span>: {
+            <span class="hljs-string">"required"</span>: <span class="hljs-literal">false</span>,
+            <span class="hljs-string">"change"</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">el</span>) </span>{
+    
+                $.getJSON(<span class="hljs-string">'https://maps.googleapis.com/maps/api/geocode/json?address='</span> + el.val() + <span class="hljs-string">'&amp;sensor=false'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>{
+                             
+                    <span class="hljs-keyword">var</span> postCode = <span class="hljs-string">""</span>;
+                    
+                    <span class="hljs-keyword">if</span> (data.results.length) {
+                    
+                        $.each(data.results[<span class="hljs-number">0</span>].address_components, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">index, e</span>) </span>{
+                            
+                            <span class="hljs-keyword">if</span> (e.types[<span class="hljs-number">0</span>] == <span class="hljs-string">"postal_code"</span>) {
+                                postCode = e.short_name+<span class="hljs-string">"-100"</span>;
+                                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+                            }
+
+                        });
+                      
+                        $(<span class="hljs-string">'#labelPostCode'</span>).val(postCode);
+                        $(<span class="hljs-string">'label[for="labelPostCode"]'</span>).addClass(<span class="hljs-string">'active'</span>);
+                    
+                    }
+                        
+                });
+
+            }
+        },
+        <span class="hljs-string">"postcode"</span>: {
+            <span class="hljs-string">"required"</span>: <span class="hljs-literal">false</span>,
+            <span class="hljs-string">"tests"</span>: [
+                {
+                    <span class="hljs-string">"type"</span>: <span class="hljs-string">"postcode"</span>, 
+                    <span class="hljs-string">"message"</span>: <span class="hljs-string">"Incorrect code"</span>
+                }
+            ]
+        }
+    }
+});
+
+form.keypress(<span class="hljs-number">300</span>);
+
+$(<span class="hljs-string">'button[type="submit"]'</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    form.test();
+    <span class="hljs-keyword">if</span> (form.errors() == <span class="hljs-number">0</span>) {
+        alert(<span class="hljs-string">'Ok'</span>);
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+});
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
+		</div>
+    </section>
+	
+</body>
+</html>

@@ -1,0 +1,261 @@
+<html>
+<head>
+    <title>jquery.formValid</title>
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/template.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+
+    <section class="page-header">
+      <h1 class="name">jquery.formValid</h1>
+      <h2 class="desc">jQuery Form Validation Plugin by Michal Rygielski.</h2>
+      
+        <a href="https://github.com/mrygielski/jquery.formValid" class="btn">View on GitHub</a>      
+        <a href="https://github.com/mrygielski/jquery.formValid/zipball/master" class="btn">Download .zip</a>
+        <a href="https://github.com/mrygielski/jquery.formValid/tarball/master" class="btn">Download .tar.gz</a>
+      
+    </section>
+    
+    <section class="page-usage">
+        <div class="container">
+            <h1><a id="formValid_jQuery_Plugin_0"></a>formValid jQuery Plugin</h1>
+<h2><a id="Demo__Examples_2"></a>Demo &amp; Examples</h2>
+<p><a href="https://mrygielski.github.io/jquery.formValid/">https://mrygielski.github.io/jquery.formValid/</a></p>
+<p>Demo 1 - A simple example of use - <a href="https://mrygielski.github.io/jquery.formValid/examples/demo1.html">https://mrygielski.github.io/jquery.formValid/examples/demo1.html</a><br>
+Demo 2 - Modifying the change method - <a href="https://mrygielski.github.io/jquery.formValid/examples/demo2.html">https://mrygielski.github.io/jquery.formValid/examples/demo2.html</a><br>
+Demo 3 - Defining your own regex - <a href="https://mrygielski.github.io/jquery.formValid/examples/demo3.html">https://mrygielski.github.io/jquery.formValid/examples/demo3.html</a></p>
+
+<h2><a id="Usage_6"></a>Usage</h2>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">method</span>=<span class="hljs-value">"post"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"form"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"row"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"col-md-12"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"labelLogin"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"form-control"</span> <span class="hljs-attribute">data-field</span>=<span class="hljs-value">"login"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"labelLogin"</span>&gt;</span>Login (email) *<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"valid-message"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"row"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"col-md-12"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"password"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"labelPassword"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"form-control"</span> <span class="hljs-attribute">data-field</span>=<span class="hljs-value">"password"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"labelSurname"</span>&gt;</span>Password *<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"valid-message"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"row"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"col-md-12"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"btn btn-primary"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"submit"</span>&gt;</span>LOGIN<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
+</code></pre>
+<p>Each field must have an attribute <code>data-field</code>.</p>
+<p>Include jQuery:</p>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
+<p>Include plugin’s CSS and JS:</p>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"src/jquery.formValid.csss"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"src/jquery.formValid.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
+<p>Call the plugin:</p>
+<pre><code class="language-javascript"><span class="hljs-comment">/* Init form fields */</span>
+<span class="hljs-keyword">var</span> form = $(<span class="hljs-string">'#form'</span>).formValid({
+    fields: {
+        <span class="hljs-string">"login"</span>: {
+            <span class="hljs-string">"required"</span>: <span class="hljs-literal">true</span>, 
+            <span class="hljs-string">"tests"</span>: [
+                {
+                    <span class="hljs-string">"type"</span>: <span class="hljs-string">"null"</span>, 
+                    <span class="hljs-string">"message"</span>: <span class="hljs-string">"Not entered login"</span>
+                },
+                {
+                    <span class="hljs-string">"type"</span>: <span class="hljs-string">"email"</span>, 
+                    <span class="hljs-string">"message"</span>: <span class="hljs-string">"Your email is incorrect"</span>
+                }
+            ]
+        },
+        <span class="hljs-string">"password"</span>: {
+            <span class="hljs-string">"required"</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-string">"tests"</span>: [
+                {
+                    <span class="hljs-string">"type"</span>: <span class="hljs-string">"null"</span>, 
+                    <span class="hljs-string">"message"</span>: <span class="hljs-string">"Not entered password"</span>
+                }
+            ]
+        }
+    }
+});
+
+<span class="hljs-comment">/* Validates the field after the change */</span>
+form.keypress(<span class="hljs-number">300</span>);
+$(<span class="hljs-string">'button[type="submit"]'</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// Validation test  </span>
+    form.test();
+    <span class="hljs-keyword">if</span> (form.errors() == <span class="hljs-number">0</span>) {
+        alert(<span class="hljs-string">'Ok'</span>);
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+});
+</code></pre>
+<h2><a id="Options_89"></a>Options</h2>
+<p>Here’s a list of available settings.</p>
+<pre><code class="language-javascript">$(<span class="hljs-string">'#form'</span>).formValid({
+    fields: {
+        <span class="hljs-string">"field_name"</span>: {
+            <span class="hljs-string">"required"</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-string">"tests"</span>: [
+                {
+                    <span class="hljs-string">"type"</span>: <span class="hljs-string">"null"</span>,
+                    <span class="hljs-string">"message"</span>: <span class="hljs-string">"..."</span>
+                },
+                ...
+            ],
+            <span class="hljs-string">"change"</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+                ...
+            }
+        },
+        ...
+    }
+});
+</code></pre>
+<p>Option <code>fields</code> is an array containing information about all fields. The first part of the array must have a name that matches the attribute <code>data-field</code> assigned to the field in the html code.</p>
+<p>Field options:</p>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>required</code></td>
+<td><em>boolean</em></td>
+<td><code>false</code></td>
+<td>Determines whether the field should be required when checking. Possible values: true, false</td>
+</tr>
+<tr>
+<td><code>tests</code></td>
+<td><em>Array</em></td>
+<td>-</td>
+<td>Specifies a list of validation tests for the field. The table must be based on the <code>type</code> and <code>message</code> parameters. <code>type</code> specifies the type of test, <code>message</code> message that should appear when the field value fails the test.</td>
+</tr>
+<tr>
+<td><code>change</code></td>
+<td><em>Method</em></td>
+<td>-</td>
+<td>It allows you to embed your own code that will be called when the field value changes.</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="Methods_122"></a>Methods</h2>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Name</th>
+<th>Return</th>
+<th>Params</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>test</code></td>
+<td>-</td>
+<td>-</td>
+<td>Performs a validation test of all defined fields.</td>
+</tr>
+<tr>
+<td><code>keypress</code></td>
+<td>-</td>
+<td><em>timeout:Integer</em></td>
+<td>Carries out a validation test for the modified field after a specific <code>timeout</code> value.</td>
+</tr>
+<tr>
+<td><code>errors</code></td>
+<td>Number</td>
+<td>-</td>
+<td>Returns information in the form of a number if the form has validation errors.</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="Tests_131"></a>Tests</h2>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>null</code></td>
+<td>Checks whether the value is empty.</td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td>Checks the correctness of the email address.</td>
+</tr>
+<tr>
+<td><code>number</code></td>
+<td>Checks whether the value is a number.</td>
+</tr>
+<tr>
+<td><code>letters</code></td>
+<td>Checks whether the value is text.</td>
+</tr>
+<tr>
+<td><code>phone</code></td>
+<td>Checks the correctness of the telephone number.</td>
+</tr>
+<tr>
+<td><code>postcode</code></td>
+<td>Checks the correctness of the postal code (Poland).</td>
+</tr>
+</tbody>
+</table>
+<p>You can also use the <code>regex</code> parameter instead of the test name, so you can define your own regex. Example:</p>
+<pre><code class="language-javascript"><span class="hljs-string">"tests"</span>: [
+    {
+        <span class="hljs-string">"regex"</span>: <span class="hljs-string">"^[A-Z]+$"</span>, 
+        <span class="hljs-string">"message"</span>: <span class="hljs-string">"Only upper-case letter"</span>
+    }
+]
+</code></pre>
+<h2><a id="Installation_153"></a>Installation</h2>
+<p>You can install jquery.formValid by using <a href="https://bower.io/">Bower</a>.</p>
+<pre><code class="language-bash">bower install jquery.formValid
+</code></pre>
+<p>Or you can install it through <a href="https://www.npmjs.com/">npm</a>:</p>
+<pre><code>npm install --save jquery.formvalid
+</code></pre>
+<p>Create distribution version</p>
+<pre><code>npm install
+./gulp
+</code></pre>
+<h2><a id="Changelog_173"></a>Changelog</h2>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Version</th>
+<th>Date</th>
+<th>Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0.1</td>
+<td>2018-04-28</td>
+<td>Addition of own regex definitions</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="License_179"></a>License</h2>
+<p>This plugin is available under <a href="https://opensource.org/licenses/mit-license.php">the MIT license</a>.</p>
+		</div>
+    </section>
+
+</body>
+</html>

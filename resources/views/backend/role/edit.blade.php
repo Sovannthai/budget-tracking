@@ -1,0 +1,207 @@
+@extends('backend.layouts.app')
+@section('title', __('Edit Role'))
+<style>
+    .toggler input {
+        display: none;
+    }
+
+    .toggler label {
+        display: block;
+        position: relative;
+        width: 72px;
+        height: 36px;
+        border: 1px solid #d6d6d6;
+        border-radius: 36px;
+        background: #e4e8e8;
+        cursor: pointer;
+    }
+
+    .toggler label::after {
+        display: block;
+        border-radius: 100%;
+        background-color: #d7062a;
+        content: '';
+        animation-name: toggler-size;
+        animation-duration: 0.15s;
+        animation-timing-function: ease-out;
+        animation-direction: forwards;
+        animation-iteration-count: 1;
+        animation-play-state: running;
+    }
+
+    .toggler label::after,
+    .toggler label .toggler-on,
+    .toggler label .toggler-off {
+        position: absolute;
+        top: 50%;
+        left: 25%;
+        width: 26px;
+        height: 26px;
+        transform: translateY(-50%) translateX(-50%);
+        transition: left 0.15s ease-in-out, background-color 0.2s ease-out, width 0.15s ease-in-out, height 0.15s ease-in-out, opacity 0.15s ease-in-out;
+    }
+
+    .toggler input:checked+label::after,
+    .toggler input:checked+label .toggler-on,
+    .toggler input:checked+label .toggler-off {
+        left: 75%;
+    }
+
+    .toggler input:checked+label::after {
+        background-color: #50ac5d;
+        animation-name: toggler-size2;
+    }
+
+    .toggler .toggler-on,
+    .toggler .toggler-off {
+        opacity: 1;
+        z-index: 2;
+    }
+
+    .toggler input:checked+label .toggler-off,
+    .toggler input:not(:checked)+label .toggler-on {
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+
+    .toggler .path {
+        fill: none;
+        stroke: #fefefe;
+        stroke-width: 7px;
+        stroke-linecap: round;
+        stroke-miterlimit: 10;
+    }
+
+    @keyframes toggler-size {
+
+        0%,
+        100% {
+            width: 26px;
+            height: 26px;
+        }
+
+        50% {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    @keyframes toggler-size2 {
+
+        0%,
+        100% {
+            width: 26px;
+            height: 26px;
+        }
+
+        50% {
+            width: 20px;
+            height: 20px;
+        }
+    }
+</style>
+@section('content')
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mt-4">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            @include('backend.components.table.header_table', [
+                                'icon_name'        => 'fa-user-shield',
+                                'header_text'      => __('Edit Role'),
+                                'sub_header_title' => __('Update role information'),
+                            ])
+                        </div>
+                        <form class="form-material form-horizontal" action="{{ route('role.update', $role->id) }}"
+                            method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="name"><b>@lang('Name')</b></label>
+                                            <div class="input-group mb-3">
+                                                <input type="text" value="{{ $role->name }}" name="name"
+                                                    class="form-control @error('name') is-invalid @enderror"
+                                                    placeholder="@lang('Type name permission')">
+                                                @error('name')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div>
+                                    <div class="" hidden>
+                                        <label for="view_user" class="mr-2"><b>@lang('All Permission')</b></label><br>
+                                        <label class="switch">
+                                            <input type="checkbox" id="select-all">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div><br>
+                                    <div class="row">
+                                        @foreach ($permissions as $permission => $permissionList)
+                                            <div class="col-md-12">
+                                                <label for=""
+                                                    class="mr-2"><b>{{ ucwords($permission) }}</b></label>
+                                                <br><br>
+                                                <div class="row">
+                                                    @foreach ($permissionList as $perm)
+                                                        <div class="form-group col-sm-3">
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group">
+                                                                    <div class="toggler">
+                                                                        <input id="{{ $perm->name }}" name="permissions[]"
+                                                                            type="checkbox"
+                                                                            @if (in_array($perm->name, $rolePermissions)) checked @endif
+                                                                            value="{{ $perm->name }}">
+                                                                        <label for="{{ $perm->name }}">
+                                                                            <svg class="toggler-on" version="1.1"
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                viewBox="0 0 130.2 130.2">
+                                                                                <polyline class="path check"
+                                                                                    points="100.2,40.2 51.5,88.8 29.8,67.5">
+                                                                                </polyline>
+                                                                            </svg>
+                                                                            <svg class="toggler-off" version="1.1"
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                viewBox="0 0 130.2 130.2">
+                                                                                <line class="path line" x1="34.4"
+                                                                                    y1="34.4" x2="95.8"
+                                                                                    y2="95.8"></line>
+                                                                                <line class="path line" x1="95.8"
+                                                                                    y1="34.4" x2="34.4"
+                                                                                    y2="95.8"></line>
+                                                                            </svg>
+                                                                        </label>
+                                                                    </div>
+                                                                    <span class="mt-1"
+                                                                        style="margin-left: 5px;">{{ $perm->display }}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                            @include('backend.components.form.btn.btn_form', [
+                                'btn_submit_name' => __('Update'),
+                                'btn_back_name'   => __('Back to List'),
+                                'route_back'      => 'role.index',
+                            ])
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+@endsection
