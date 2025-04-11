@@ -47,13 +47,13 @@ class CustomerController extends Controller
             DB::commit();
             $output = [
                 'success' => 1,
-                'msg' => __('Customer :name created successfully.', ['name' => $customers->first_name.' '.$customers->last_name])
+                'msg'     => __('Customer :name created successfully.', ['name' => $customers->first_name.' '.$customers->last_name])
             ];
         }catch (\Exception $e){
             DB::rollBack();
             $output = [
                 'success' => 0,
-                'msg' => __('Something went wrong'),
+                'msg'     => __('Something went wrong'),
             ];
         }
         return redirect()->route('customers.index')->with($output);
@@ -99,13 +99,13 @@ class CustomerController extends Controller
             DB::commit();
             $output = [
                 'success' => 1,
-                'msg' => __('Customer :name updated successfully.', ['name' => $customers->first_name.' '.$customers->last_name])
+                'msg'     => __('Customer :name updated successfully.', ['name' => $customers->first_name.' '.$customers->last_name])
             ];
         }catch (\Exception $e){
             DB::rollBack();
             $output = [
                 'success' => 0,
-                'msg' => __('Something went wrong'),
+                'msg'     => __('Something went wrong'),
             ];
         }
         return redirect()->route('customers.index')->with($output);
@@ -132,13 +132,13 @@ class CustomerController extends Controller
             DB::commit();
             $output = [
                 'success' => 1,
-                'msg' => __('Customer :name deleted successfully.', ['name' => $customer->first_name.' '.$customer->last_name])
+                'msg'     => __('Customer :name deleted successfully.', ['name' => $customer->first_name.' '.$customer->last_name])
             ];
         }catch (\Exception $e){
             DB::rollBack();
             $output = [
                 'success' => 0,
-                'msg' => __('Something went wrong'),
+                'msg'     => __('Something went wrong'),
             ];
         }
         return redirect()->route('customers.index')->with($output);

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class IncomeType extends Model
 {
-    use SoftDeletes;
+    // use SoftDeletes;
     /**
      * Relationship with the Customer model
      *  This indicates that an income type belongs to a customer.

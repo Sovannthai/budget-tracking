@@ -22,7 +22,13 @@ class UpdateCustomerAction
         $image->move(public_path('uploads/all_photo/'), $imageName);
         return $imageName;
     }
-
+    /*
+    * Update customer
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @param  \App\Models\Customer  $customer
+    * @return \App\Models\Customer
+    */
     public function handle($request, $customer)
     {
         $old_photo_path       = $customer->image;

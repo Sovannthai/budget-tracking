@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BudgetController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backends\RoleController;
@@ -17,6 +18,8 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function () {
     // Dashboard
     Route::get('/home', [App\Http\Controllers\Admin\AdminController::class, 'dashboard'])->name('dashboard');
+    // Budget
+    Route::get('/budget',[BudgetController::class, 'index'])->name('budget.index');
     //Users 
     Route::resource('user', UserController::class);
     //Roles

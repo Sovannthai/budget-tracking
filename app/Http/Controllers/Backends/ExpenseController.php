@@ -30,7 +30,7 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        $customers = Customer::where('status', 1)->latest()->paginate($this->limit());
+        $customers    = Customer::where('status', 1)->latest()->paginate($this->limit());
         $expenseTypes = ExpenseType::latest()->paginate($this->limit());
         return view('backend.expenses.create', compact('customers', 'expenseTypes'));
     }
@@ -69,7 +69,7 @@ class ExpenseController extends Controller
      */
     public function edit(Expense $expense)
     {
-        $customers = Customer::where('status', 1)->latest()->paginate($this->limit());
+        $customers    = Customer::where('status', 1)->latest()->paginate($this->limit());
         $expenseTypes = ExpenseType::latest()->paginate($this->limit());
         return view('backend.expenses.edit', compact('expense', 'customers', 'expenseTypes'));
     }

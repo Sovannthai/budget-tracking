@@ -25,7 +25,7 @@ class AdminController extends Controller
             ->get()
             ->map(function ($item) {
             return [
-                'icon' => $item->incomeType->icon,
+                'icon'  => $item->incomeType->icon,
                 'type'  => $item->incomeType->name,
                 'total' => $item->total,
             ];
@@ -39,7 +39,7 @@ class AdminController extends Controller
             ->get()
             ->map(function ($item) {
                 return [
-                    'icon' => $item->expenseType->icon,
+                    'icon'  => $item->expenseType->icon,
                     'type'  => $item->expenseType->name,
                     'total' => $item->total,
                 ];
@@ -54,12 +54,12 @@ class AdminController extends Controller
             ->get()
             ->map(function ($item) {
                 return [
-                    'id' => $item->id,
-                    'icon' => $item->expenseType->icon,
-                    'type' => $item->expenseType->name,
-                    'amount' => $item->amount,
-                    'description' => $item->description,
-                    'date' => $item->date,
+                    'id'               => $item->id,
+                    'icon'             => $item->expenseType->icon,
+                    'type'             => $item->expenseType->name,
+                    'amount'           => $item->amount,
+                    'description'      => $item->description,
+                    'date'             => $item->date,
                     'transaction_type' => 'expense'
                 ];
             });
@@ -71,12 +71,12 @@ class AdminController extends Controller
             ->get()
             ->map(function ($item) {
                 return [
-                    'id' => $item->id,
-                    'icon' => $item->incomeType->icon,
-                    'type' => $item->incomeType->name,
-                    'amount' => $item->amount,
-                    'description' => $item->description,
-                    'date' => $item->date,
+                    'id'               => $item->id,
+                    'icon'             => $item->incomeType->icon,
+                    'type'             => $item->incomeType->name,
+                    'amount'           => $item->amount,
+                    'description'      => $item->description,
+                    'date'             => $item->date,
                     'transaction_type' => 'income'
                 ];
             });

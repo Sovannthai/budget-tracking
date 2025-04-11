@@ -34,14 +34,14 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|unique:roles,name',
+            'name'        => 'required|unique:roles,name',
             'permissions' => 'array',
         ]);
 
-        $roleName = $request->input('name');
+        $roleName    = $request->input('name');
         $permissions = $request->input('permissions');
 
-        $role = new Role;
+        $role       = new Role;
         $role->name = $roleName;
         $role->save();
 
@@ -49,7 +49,7 @@ class RoleController extends Controller
             $validPermissions = Permission::whereIn('id', $permissions)->get();
 
             if ($validPermissions->count() != count($permissions)) {
-                $notFoundPermissions = array_diff($permissions, $validPermissions->pluck('id')->toArray());
+                $notFoundPermissions        = array_diff($permissions, $validPermissions->pluck('id')->toArray());
                 return redirect()->back()->withErrors(['permissions' => 'Invalid permissions: ' . implode(', ', $notFoundPermissions)]);
             }
 
@@ -58,14 +58,14 @@ class RoleController extends Controller
 
         $output = [
             'success' => 1,
-            'msg' => __('Role added successfully.')
+            'msg'     => __('Role added successfully.')
         ];
         return redirect()->route('role.index')->with($output);
     }
 
     public function edit($id)
     {
-        $role = Role::with('permissions')->find($id);
+        $role        = Role::with('permissions')->find($id);
         $permissions = Permission::get()->groupBy(function ($data) {
             return $data->module;
         });
@@ -80,14 +80,12 @@ class RoleController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|unique:roles,name,' . $id,
-            // Uncomment this if you want to validate description
-            // 'description' => 'sometimes|string|max:255',
         ]);
 
-        $roleName = $request->input('name');
+        $roleName    = $request->input('name');
         $permissions = $request->input('permissions', []);
 
-        $role = Role::findOrFail($id);
+        $role       = Role::findOrFail($id);
         $role->name = $roleName;
         $role->save();
 
@@ -95,7 +93,7 @@ class RoleController extends Controller
             $validPermissions = Permission::whereIn('name', $permissions)->get();
 
             if ($validPermissions->count() != count($permissions)) {
-                $notFoundPermissions = array_diff($permissions, $validPermissions->pluck('name')->toArray());
+                $notFoundPermissions        = array_diff($permissions, $validPermissions->pluck('name')->toArray());
                 return redirect()->back()->withErrors(['permissions' => 'Invalid permissions: ' . implode(', ', $notFoundPermissions)]);
             }
 
@@ -106,14 +104,14 @@ class RoleController extends Controller
 
         $output = [
             'success' => 1,
-            'msg' => __('Role updated successfully.')
+            'msg'     => __('Role updated successfully.')
         ];
         return redirect()->route('role.index')->with($output);
     }
 
     public function show($id)
     {
-        $role = Role::findOrFail($id);
+        $role        = Role::findOrFail($id);
         $permissions = Permission::get()->groupBy(function ($data) {
             return $data->module;
         });
@@ -130,7 +128,7 @@ class RoleController extends Controller
         $role->delete();
         $output = [
             'success' => 1,
-            'msg' => __('Role deleted successfully.')
+            'msg'     => __('Role deleted successfully.')
         ];
         return redirect()->route('role.index')->with($output);
     }

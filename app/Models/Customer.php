@@ -2,13 +2,41 @@
 
 namespace App\Models;
 
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Customer extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, HasApiTokens, Notifiable;
     protected $guarded = [];
+    protected $appends = ['image_url'];
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
+    protected $casts = [
+        'dob' => 'date',
+    ];
+    /**
+     * Generate the image URL
+     * @param string $imageName
+     * @return string|null
+     */
+    protected function generateImageUrl($imageName)
+    {
+        if (!empty($imageName)) {
+            return asset('uploads/all_photo/' . rawurlencode($imageName));
+        } else {
+            return null;
+        }
+    }
+    /**
+     * Get the image URL
+     * @return string|null
+     */
+    public function getImageUrlAttribute()
+    {
+        return $this->generateImageUrl($this->image) ?: asset('uploads/all_photo/default.png');
+    }
 
     /**
      * Relationship with the Income model

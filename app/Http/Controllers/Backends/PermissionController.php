@@ -79,7 +79,7 @@ class PermissionController extends Controller
      */
     public function update(UpdatePermissionRequest $request, $id)
     {
-        $name = $request->input('name');
+        $name      = $request->input('name');
         $guardName = 'web';
         Permission::where('id', $id)->update([
             'name'       => $name,
