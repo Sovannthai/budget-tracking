@@ -298,7 +298,7 @@
                             <div class="col-xl-3 col-md-6 mb-xl-0 mb-4 p-2">
                                 <div class="card card-blog card-plain action-card">
                                     <div class="position-relative">
-                                        <a href="{{ route('expenses.index') }}" class="d-block border-radius-xl">
+                                        <a href="{{ route('income-report') }}" class="d-block border-radius-xl">
                                             <div
                                                 class="card bg-gradient-primary shadow-primary border-radius-xl p-4 text-center action-icon">
                                                 <i class="fas fa-chart-pie text-white" style="font-size: 2.5rem;"></i>
@@ -306,7 +306,7 @@
                                         </a>
                                     </div>
                                     <div class="card-body px-1 pb-0 text-center">
-                                        <a href="{{ route('expenses.index') }}">
+                                        <a href="{{ route('income-report') }}">
                                             <h5>Monthly Report</h5>
                                         </a>
                                         <p class="text-sm mb-0 text-secondary">View your financial reports</p>
@@ -316,7 +316,7 @@
                             <div class="col-xl-3 col-md-6 mb-xl-0 mb-4 p-2">
                                 <div class="card card-blog card-plain action-card">
                                     <div class="position-relative">
-                                        <a href="#" class="d-block border-radius-xl">
+                                        <a href="{{ route('budget.index') }}" class="d-block border-radius-xl">
                                             <div
                                                 class="card bg-gradient-info shadow-info border-radius-xl p-4 text-center action-icon">
                                                 <i class="fas fa-wallet text-white" style="font-size: 2.5rem;"></i>
@@ -324,7 +324,7 @@
                                         </a>
                                     </div>
                                     <div class="card-body px-1 pb-0 text-center">
-                                        <a href="#">
+                                        <a href="{{ route('budget.index') }}">
                                             <h5>Budgets</h5>
                                         </a>
                                         <p class="text-sm mb-0 text-secondary">Manage your monthly budgets</p>

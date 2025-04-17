@@ -5,7 +5,7 @@
     <style>
         .summary-card {
             transition: all 0.3s ease;
-            border-radius: 10px;
+            /* border-radius: 30px; */
             overflow: hidden;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }

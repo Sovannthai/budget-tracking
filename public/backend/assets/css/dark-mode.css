@@ -231,3 +231,11 @@
     color: #fff !important;
     border-radius: 10px;
 }
+.dark-mode .table-container {
+    background-color: var(--primary) !important;
+    color: #fff !important;
+    border-radius: 10px;
+}
+.dark-mode .icon-sidebar-responsive {
+    color: #fff !important;
+}

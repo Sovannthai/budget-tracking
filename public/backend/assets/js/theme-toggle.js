@@ -47,6 +47,67 @@
  * toastr.info('Message');
  */
 
+/**
+ * Theme Toggle & Notification System
+ * 
+ * For notifications, you can use the global showToast function:
+ * 
+ * // Success notification
+ * showToast('Operation completed successfully!');
+ * 
+ * // Error notification
+ * showToast('Something went wrong!', 'error');
+ * 
+ * // Warning notification
+ * showToast('Please check your input!', 'warning');
+ * 
+ * // Info notification
+ * showToast('This is an informational message.', 'info');
+ * 
+ * For AJAX operations, you can show notifications after the operation completes:
+ * 
+ * $.ajax({
+ *     url: '/your-endpoint',
+ *     method: 'POST',
+ *     data: formData,
+ *     success: function(response) {
+ *         if (response.success) {
+ *             showToast(response.msg);
+ *         } else {
+ *             showToast(response.msg, 'error');
+ *         }
+ *     },
+ *     error: function() {
+ *         showToast('An error occurred while processing your request.', 'error');
+ *     }
+ * });
+ * 
+ * You can also use Notiflix directly for more customization:
+ * 
+ * // Initialize with custom options (optional)
+ * Notiflix.Notify.init({
+ *     width: '280px',
+ *     position: 'right-top',
+ *     distance: '10px',
+ *     opacity: 1,
+ *     borderRadius: '5px',
+ *     rtl: false,
+ *     timeout: 3000,
+ *     messageMaxLength: 110,
+ *     backOverlay: false,
+ *     backOverlayColor: 'rgba(0,0,0,0.5)',
+ *     plainText: true,
+ *     showOnlyTheLastOne: false,
+ *     clickToClose: false,
+ * });
+ * 
+ * // Show notifications
+ * Notiflix.Notify.success('Message');
+ * Notiflix.Notify.failure('Message');
+ * Notiflix.Notify.warning('Message');
+ * Notiflix.Notify.info('Message');
+ */
+
 const storageKey = "theme-preference";
 
 const onClick = () => {

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class IncomeType extends Model
 {
     // use SoftDeletes;
+    
     /**
      * Relationship with the Customer model
      *  This indicates that an income type belongs to a customer.
@@ -19,6 +20,7 @@ class IncomeType extends Model
     {
         return $this->belongsTo(Customer::class);
     }
+
     /**
      * Relationship with the Income model
      * This indicates that an income type can have multiple incomes.

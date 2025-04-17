@@ -46,4 +46,7 @@ Route::middleware('api')
         Route::post('/create-expense',[AppApiController::class,'createExpense'])->name('api.create-expense');
         Route::post('/update-expense',[AppApiController::class,'updateExpense'])->name('api.update-expense');
         Route::delete('/delete-expense',[AppApiController::class,'deleteExpense'])->name('api.delete-expense');
+
+        // Get business info
+        Route::get('/get-business-info',[AppApiController::class,'getBusinessInfo'])->name('api.get-business-info');
     });

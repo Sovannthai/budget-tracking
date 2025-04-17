@@ -12,10 +12,9 @@ class Customer extends Model
     use SoftDeletes, HasApiTokens, Notifiable;
     protected $guarded = [];
     protected $appends = ['image_url'];
-    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
-    protected $casts = [
-        'dob' => 'date',
-    ];
+    protected $hidden  = ['created_at', 'updated_at', 'deleted_at'];
+    protected $casts   = ['dob' => 'date'];
+
     /**
      * Generate the image URL
      * @param string $imageName
@@ -29,6 +28,7 @@ class Customer extends Model
             return null;
         }
     }
+
     /**
      * Get the image URL
      * @return string|null
@@ -46,6 +46,7 @@ class Customer extends Model
     {
         return $this->hasMany(Income::class);
     }
+
     /*
     * Relationship with the ExpenseType model
     * expense hasMany customer
@@ -54,6 +55,7 @@ class Customer extends Model
     {
         return $this->hasMany(Expense::class);
     }
+
     /**
      * Relationship with the ExpenseType model
      * expenseType hasMany customer
@@ -71,6 +73,7 @@ class Customer extends Model
     {
         return $this->hasMany(IncomeType::class);
     }
+    
     /**
      * Relationship with the Budget model
      * budget hasMany customer

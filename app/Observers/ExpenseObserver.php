@@ -26,8 +26,7 @@ class ExpenseObserver
      */
     public function updated(Expense $expense): void
     {
-        $originalAmount = $expense->getOriginal('amount') ?? 0;
-        
+        $originalAmount   = $expense->getOriginal('amount') ?? 0;
         $amountDifference = $expense->amount - $originalAmount;
         
         if ($amountDifference != 0) {
@@ -72,8 +71,8 @@ class ExpenseObserver
            // Create a budget if it doesn't exist with negative balance
            Budget::create([
                'customer_id' => $expense->customer_id,
-               'amount' => 0,
-               'balance' => -$expense->amount
+               'amount'      => 0,
+               'balance'     => -$expense->amount
            ]);
        }
    }

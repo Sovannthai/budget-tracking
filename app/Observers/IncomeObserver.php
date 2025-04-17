@@ -24,8 +24,7 @@ class IncomeObserver
      */
     public function updated(Income $income): void
     {
-         $originalAmount = $income->getOriginal('amount') ?? 0;
-        
+         $originalAmount   = $income->getOriginal('amount') ?? 0;
          $amountDifference = $income->amount - $originalAmount;
          
          if ($amountDifference != 0) {
@@ -68,8 +67,8 @@ class IncomeObserver
         } else {
             Budget::create([
                 'customer_id' => $income->customer_id,
-                'amount' => $income->amount,
-                'balance' => $income->amount
+                'amount'      => $income->amount,
+                'balance'     => $income->amount
             ]);
         }
     }

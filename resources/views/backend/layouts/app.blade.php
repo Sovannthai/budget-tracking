@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="reverb-key" content="{{ env('PUSHER_APP_KEY') }}">
+    <meta name="reverb-host" content="{{ env('PUSHER_HOST', '127.0.0.1') }}">
+    <meta name="reverb-port" content="{{ env('PUSHER_PORT', 6001) }}">
+    <meta name="reverb-scheme" content="{{ env('PUSHER_SCHEME', 'http') }}">
     <title>@yield('title', 'Dashboard')</title>
 
     <!-- Favicon -->
@@ -36,8 +40,7 @@
 
     <!-- Main CSS -->
     <link id="pagestyle" href="{{ asset('backend/assets') }}/css/soft-ui-dashboard.min.css" rel="stylesheet">
-    <!-- Toastr CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <!-- Using Notiflix for notifications (no CSS import needed) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <style>
         #icon-sidebar {
@@ -156,7 +159,7 @@
                 <nav aria-label="breadcrumb">
                     <h6 class="font-weight-bolder mb-0">
                         {{-- @if (Route::is('dashboard')) --}}
-                            {{ __('Welcome,') . ' ' . auth()->user()->name }}
+                        {{ __('Welcome,') . ' ' . auth()->user()->name }}
                         {{-- @endif --}}
                     </h6>
                 </nav>
@@ -175,7 +178,8 @@
                             <a href="javascript:;" class="nav-link text-body font-weight-bold px-0" id="profileDropdown"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="{{ asset('uploads/images/defualt.png') }}" alt="profile"
-                                    class="avatar avatar-sm rounded-circle me-2">
+                                    class="avatar avatar-sm rounded-circle me-2"
+                                    style="border: 2px solid #5e72e4; box-shadow: 0 0 10px rgba(94, 114, 228, 0.3);     width: 50px !important;height: 50px !important;object-fit: cover;">
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                                 <li><a class="dropdown-item" href="">My Profile</a></li>
@@ -191,6 +195,15 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                            <a href="javascript:;" class="nav-link icon-sidebar-responsive p-0" id="iconNavbarSidenav">
+                                <div class="sidenav-toggler-inner">
+                                    <i class="sidenav-toggler-line icon-sidebar-responsive"></i>
+                                    <i class="sidenav-toggler-line icon-sidebar-responsive"></i>
+                                    <i class="sidenav-toggler-line icon-sidebar-responsive"></i>
+                                </div>
+                            </a>
+                        </li>            
                     </ul>
                 </div>
             </div>
@@ -233,13 +246,23 @@
     <script src="{{ asset('backend/plugins/dropfy/dist/js/dropify.min.js') }}"></script>
     {{-- Select2 --}}
     <script src="{{ asset('backend/plugins/select2/select2/js/select2.full.min.js') }}"></script>
-    <!-- Toastr JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- Notiflix JS -->
+    <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"></script>
     {{-- Image link preview --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
 
     <script src="{{ asset('backend/assets') }}/js/soft-ui-dashboard.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://js.pusher.com/8.0/pusher.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/laravel-echo@1.15.3/dist/echo.iife.js"></script>
+    <script>
+        window.axios = window.axios || {};
+        window.axios.defaults = window.axios.defaults || {};
+        window.axios.defaults.headers = window.axios.defaults.headers || {};
+        window.axios.defaults.headers.common = window.axios.defaults.headers.common || {};
+        window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+    </script>
+    <script src="{{ asset('js/echo-config.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             flatpickr(".flatpickr-date", {
@@ -272,53 +295,36 @@
 
         @if (Session::has('msg'))
             @if (Session::get('success') == true || Session::get('success') == 1)
-                toastr.options = {
-                    "closeButton": true,
-                    "progressBar": true
-                }
-                toastr.success("{{ Session::get('msg') }}");
+                Notiflix.Notify.success("{{ Session::get('msg') }}");
                 // success.play();
             @else
-                toastr.options = {
-                    "closeButton": true,
-                    "progressBar": true
-                }
-                toastr.error("{{ Session::get('msg') }}");
+                Notiflix.Notify.failure("{{ Session::get('msg') }}");
                 // error.play();
             @endif
         @endif
 
-        // Handle validation errors with toastr
+        // Handle validation errors with Notiflix
         @if ($errors->any())
-            toastr.options = {
-                "closeButton": true,
-                "progressBar": true
-            }
-            toastr.warning("{{ $errors->first() }}");
+            Notiflix.Notify.warning("{{ $errors->first() }}");
         @endif
 
-        // Global function to show toast notifications with toastr
+        // Global function to show toast notifications with Notiflix
         function showToast(message, type = 'success') {
-            toastr.options = {
-                "closeButton": true,
-                "progressBar": true
-            }
-
             switch (type) {
                 case 'success':
-                    toastr.success(message);
+                    Notiflix.Notify.success(message);
                     break;
                 case 'error':
-                    toastr.error(message);
+                    Notiflix.Notify.failure(message);
                     break;
                 case 'warning':
-                    toastr.warning(message);
+                    Notiflix.Notify.warning(message);
                     break;
                 case 'info':
-                    toastr.info(message);
+                    Notiflix.Notify.info(message);
                     break;
                 default:
-                    toastr.success(message);
+                    Notiflix.Notify.success(message);
             }
         }
     </script>
@@ -330,6 +336,56 @@
             });
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            if (window.Echo) {
+                console.log('Echo is initialized, setting up listeners');
+                // Use a public channel instead of private for testing
+                window.Echo.channel('expense-types')
+                    .listen('.expense-type.created', (e) => {
+                        console.log('Expense type created event received:', e);
+                        Notiflix.Notify.success('A new expense type has been created');
+                        // Reload the page if we're on the expense types page
+                        if (window.location.href.includes('expense-types')) {
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, 1500);
+                        }
+                    })
+                    .listen('.expense-type.updated', (e) => {
+                        console.log('Expense type updated event received:', e);
+                        Notiflix.Notify.info('An expense type has been updated');
+                        // Reload the page if we're on the expense types page
+                        if (window.location.href.includes('expense-types')) {
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, 1500);
+                        }
+                    });
+            } else {
+                console.error('Echo is not initialized');
+            }
+        });
+    </script>
+    <script src="{{ asset('js/register-sw.js') }}"></script>
+
+    <!-- Notiflix JS -->
+    <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"></script>
+    <script>
+        // Initialize Notiflix with custom settings
+        Notiflix.Notify.init({
+            width: '280px',
+            position: 'right-top',
+            distance: '10px',
+            opacity: 1,
+            borderRadius: '5px',
+            timeout: 3000,
+            showOnlyTheLastOne: false,
+            clickToClose: true,
+        });
+    </script>
+    {{-- Image link preview --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
 </body>
 
 </html>

@@ -13,16 +13,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\EmailVerificationOtp;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\IncomeResource;
-use Illuminate\Validation\Rules\Email;
 use App\Http\Resources\ExpenseResource;
 use App\Http\Resources\CustomerResource;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\IncomeTypeResource;
 use App\Http\Resources\ExpenseTypeResource;
+use App\Models\BusinessSetting;
 
 class AppApiController extends Controller
 {
@@ -60,7 +59,7 @@ class AppApiController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'customer_id' => 'required',
-            'email'      => 'required',
+            'email'       => 'required',
         ]);
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 401);
@@ -144,6 +143,7 @@ class AppApiController extends Controller
             'password'         => 'required|min:6',
             'confirm_password' => 'required|same:password',
         ]);
+        
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 401);
         }
@@ -179,11 +179,13 @@ class AppApiController extends Controller
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 401);
         }
-        $customer           = new Customer();
-        $customer->email    = $request->email;
-        $customer->password = Hash::make($request->password);
+        $customer                 = new Customer();
+        $customer->email          = $request->email;
+        $customer->password       = Hash::make($request->password);
+        $token                    = $customer->createToken('customer-token')->plainTextToken;
+        $customer->remember_token = $token;
+        
         $customer->save();
-        $token              = $customer->createToken('customer-token')->plainTextToken;
 
         return response()->json([
             'message'  => 'Register successful',
@@ -211,7 +213,10 @@ class AppApiController extends Controller
             $customerResource = new CustomerResource($customer);
         }
         if ($customer && Hash::check($request->password, $customer->password)) {
+            
             $token = $customer->createToken('customer-token')->plainTextToken;
+            $customer->remember_token = $token;
+            $customer->save();
 
             return response()->json([
                 'message'  => 'Login successful',
@@ -975,5 +980,22 @@ class AppApiController extends Controller
                 'error'   => $e->getMessage()
             ], 500);
         }
+    }
+
+    /* 
+    * Get business info
+    * @param Request $request
+    * @return \Illuminate\Http\JsonResponse
+    */
+    public function getBusinessInfo()
+    {
+        $business = BusinessSetting::select('business_info')->first();
+        if(!$business){
+            return response()->json([
+                'message' => 'Business not found',
+            ], 404);
+        }
+        
+        return response()->json($business, 200);
     }
 }

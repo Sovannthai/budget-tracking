@@ -13,14 +13,10 @@ class ThemeController extends Controller
         $request->validate([
             'dark_mode' => 'required|boolean'
         ]);
-
-        // dd($request->dark_mode);
-
-        // Update the config value
+        
         Config::set('app.dark_mode', $request->dark_mode);
 
-        // Save to .env file
-        $envFile = base_path('.env');
+        $envFile    = base_path('.env');
         $envContent = file_get_contents($envFile);
         $envContent = preg_replace(
             '/APP_DARK_MODE=.*/',

@@ -53,12 +53,12 @@
             },
             success: function(response) {
                 if (response.success) {
-                    toastr.success(response.msg);
+                    Notiflix.Notify.success(response.msg);
                     setTimeout(() => {
                         window.location.reload();
                     }, 500);
                 } else {
-                    toastr.error(response.msg);
+                    Notiflix.Notify.failure(response.msg);
                 }
             },
             error: function(xhr, success, error) {

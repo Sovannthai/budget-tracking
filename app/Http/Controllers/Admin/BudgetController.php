@@ -30,23 +30,22 @@ class BudgetController extends Controller
         $allCustomerIds = $incomesByCustomer->keys()->merge($expensesByCustomer->keys())->unique();
         
         foreach ($allCustomerIds as $customerId) {
-            $income    = $incomesByCustomer->get($customerId);
-            $expense   = $expensesByCustomer->get($customerId);
-            $firstName = $income->first_name ?? $expense->first_name ?? '';
-            $lastName  = $income->last_name ?? $expense->last_name ?? '';
-            
+            $income        = $incomesByCustomer->get($customerId);
+            $expense       = $expensesByCustomer->get($customerId);
+            $firstName     = $income->first_name ?? $expense->first_name ?? '';
+            $lastName      = $income->last_name ?? $expense->last_name ?? '';
             $incomeAmount  = $income->total ?? 0;
             $expenseAmount = $expense->total ?? 0;
             $balance       = $incomeAmount - $expenseAmount;
             
             $customerBudgetDetails[$customerId] = [
             'customer_id' => $customerId,
-            'image'      => $income->image ?? $expense->image ?? '',
-            'first_name' => $firstName,
-            'last_name'  => $lastName,
-            'income'     => $incomeAmount,
-            'expense'    => $expenseAmount,
-            'balance'    => $balance
+            'image'       => $income->image ?? $expense->image ?? '',
+            'first_name'  => $firstName,
+            'last_name'   => $lastName,
+            'income'      => $incomeAmount,
+            'expense'     => $expenseAmount,
+            'balance'     => $balance
             ];
         }
         return view('backend.budget.index', compact(

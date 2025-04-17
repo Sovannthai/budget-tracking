@@ -40,9 +40,8 @@ class RoleController extends Controller
 
         $roleName    = $request->input('name');
         $permissions = $request->input('permissions');
-
-        $role       = new Role;
-        $role->name = $roleName;
+        $role        = new Role;
+        $role->name  = $roleName;
         $role->save();
 
         if (!empty($permissions)) {
@@ -84,9 +83,8 @@ class RoleController extends Controller
 
         $roleName    = $request->input('name');
         $permissions = $request->input('permissions', []);
-
-        $role       = Role::findOrFail($id);
-        $role->name = $roleName;
+        $role        = Role::findOrFail($id);
+        $role->name  = $roleName;
         $role->save();
 
         if (!empty($permissions)) {

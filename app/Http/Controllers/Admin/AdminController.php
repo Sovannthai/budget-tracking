@@ -12,11 +12,10 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        $totalIncome    = Income::sum('amount');
-        $totalExpenses  = Expense::sum('amount');
-        $totalCustomers = Customer::count();
-        $totalBudgets   = Budget::sum('balance');
-
+        $totalIncome       = Income::sum('amount');
+        $totalExpenses     = Expense::sum('amount');
+        $totalCustomers    = Customer::count();
+        $totalBudgets      = Budget::sum('balance');
         $totalIncomeByType = Income::with('incomeType')
             ->selectRaw('sum(amount) as total, income_type_id')
             ->groupBy('income_type_id')

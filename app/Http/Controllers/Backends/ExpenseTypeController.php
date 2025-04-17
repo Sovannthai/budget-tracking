@@ -33,7 +33,7 @@ class ExpenseTypeController extends Controller
             DB::beginTransaction();
 
             $expenseType = StoreExpenseTypeAction::run($request);
-
+            
             DB::commit();
             $output = [
                 'success' => 1,

@@ -4,10 +4,10 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
             @include('backend.components.table.header_table', [
-                'icon_name'        => 'fa-file-invoice-dollar',
-                'header_text'      => __('Expense Types'),
+                'icon_name' => 'fa-file-invoice-dollar',
+                'header_text' => __('Expense Types'),
                 'sub_header_title' => __('Manage your expense types here'),
-                'btn_title'        => __('Add Expense Type'),
+                'btn_title' => __('Add Expense Type'),
             ])
             <a href="#" class="btn btn-primary float-end text-capitalize" data-bs-toggle="modal"
                 data-bs-target="#create_expense_type">
@@ -44,7 +44,8 @@
                                             </a>
                                         </span>
                                         <span class="ms-2">
-                                            {{ optional($row->customer)->first_name }} {{ optional($row->customer)->last_name }}
+                                            {{ optional($row->customer)->first_name }}
+                                            {{ optional($row->customer)->last_name }}
                                         </span>
                                     </div>
                                 </td>
@@ -63,21 +64,21 @@
                                         </svg>
                                     </a>
                                     @include('backend.components.table.action_btn', [
-                                        'route_delete'   => 'expense-types.destroy',
-                                        'row'            => $row,
+                                        'route_delete' => 'expense-types.destroy',
+                                        'row' => $row,
                                         'tooltip_delete' => __('Delete Income Type'),
-                                        'tooltip_edit'   => __('Edit Income Type'),
+                                        'tooltip_edit' => __('Edit Income Type'),
                                     ])
                                 </td>
                             </tr>
                             @include('backend.expenseType.edit', [
                                 'incomeType' => $row,
-                                'customers'  => $customers,
+                                'customers' => $customers,
                             ])
                         @empty
                             @include('backend.components.table.not_found_item', [
                                 'total_colspan' => 6,
-                                'messages'      => __('No Expense types found'),
+                                'messages' => __('No Expense types found'),
                             ])
                         @endforelse
                     </body>

@@ -16,10 +16,9 @@ class PermissionObserver
     public function created(Permission $permission)
     {
         // Remove the first word from the input permission
-        $module = substr(strstr($permission->name, " "), 1);
-        $permission->module = strtolower($module);
-        $permission->name = strtolower($permission->name);
-        // String to Uppercase
+        $module              = substr(strstr($permission->name, " "), 1);
+        $permission->module  = strtolower($module);
+        $permission->name    = strtolower($permission->name);
         $permission->display = ucwords($permission->name);
         $permission->save();
     }

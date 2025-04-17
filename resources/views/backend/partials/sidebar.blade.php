@@ -134,15 +134,15 @@
                     </div>
                     <span class="nav-link-text ms-1">{{ __('Reports') }}</span>
                 </a>
-                <div class="collapse sub-sidebar" id="reports">
+                <div class="collapse sub-sidebar @if (Route::is('income-report') || Route::is('expense-report')) show @endif" id="reports">
                     <ul class="nav ms-4">
                         <li class="nav-item">
-                            <a class="nav-link" href="">
+                            <a class="nav-link @if (Route::is('income-report')) active @endif" href="{{ route('income-report') }}">
                                 <span class="sidenav-normal">{{ __('Income Report') }}</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">
+                            <a class="nav-link @if (Route::is('expense-report')) active @endif" href="{{ route('expense-report') }}">
                                 <span class="sidenav-normal">{{ __('Expenses Report') }}</span>
                             </a>
                         </li>
@@ -151,12 +151,12 @@
             </li>
             {{-- Settings --}}
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('dashboard') }}">
+                <a class="nav-link @if (Route::is('business-settings.*')) active @endif" href="{{ route('business-settings.edit') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <img src="{{ asset('uploads/images/settings.png') }}" id="icon-sidebar" alt="dashboard">
                     </div>
-                    <span class="nav-link-text ms-1">{{ __('Settings') }}</span>
+                    <span class="nav-link-text ms-1">{{ __('Business Settings') }}</span>
                 </a>
             </li>
             {{-- Logout --}}

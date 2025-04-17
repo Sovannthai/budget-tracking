@@ -198,7 +198,11 @@
         <div class="customer-header">
             <div class="row align-items-center">
                 <div class="col-md-3 col-sm-4 text-center text-sm-start mb-3 mb-sm-0">
-                    <img src="{{ asset('uploads/all_photo/'. $customer->image) }}" alt="Customer Profile" class="customer-profile">
+                    @include('backend.components.table.show_image_table',[
+                            'field_name' => $customer->image,
+                            'id'         => $customer->id,
+                            'image_path' => 'uploads/all_photo/',
+                        ])
                 </div>
                 <div class="col-md-9 col-sm-8">
                     <h4 class="mb-1">{{ $customer->first_name }} {{ $customer->last_name }}</h4>

@@ -9,6 +9,7 @@ class Income extends Model
 {
     use SoftDeletes;
     protected $guarded = [];
+
     /**
      * Relationship with the IncomeType model
      * This indicates that an income belongs to an income type.
@@ -18,6 +19,7 @@ class Income extends Model
     {
         return $this->belongsTo(IncomeType::class);
     }
+    
     /**
      * Relationship with the Customer model
      * This indicates that an income belongs to a customer.

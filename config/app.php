@@ -2,6 +2,9 @@
 
 return [
 
+    // Uncomment the BroadcastServiceProvider
+    App\Providers\BroadcastServiceProvider::class,
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -78,11 +81,9 @@ return [
     |
     */
 
-    'locale' => env('APP_LOCALE', 'en'),
-
+    'locale'          => env('APP_LOCALE', 'en'),
     'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
-
-    'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
+    'faker_locale'    => env('APP_FAKER_LOCALE', 'en_US'),
 
     /*
     |--------------------------------------------------------------------------
@@ -95,10 +96,8 @@ return [
     |
     */
 
-    'cipher' => 'AES-256-CBC',
-
-    'key' => env('APP_KEY'),
-
+    'cipher'        => 'AES-256-CBC',
+    'key'           => env('APP_KEY'),
     'previous_keys' => [
         ...array_filter(
             explode(',', env('APP_PREVIOUS_KEYS', ''))
@@ -106,7 +105,7 @@ return [
     ],
 
     //Theme
-    'theme' => 0,
+    'theme'     => 0,
     'dark_mode' => env('APP_DARK_MODE', false),
 
     /*
@@ -123,8 +122,8 @@ return [
     */
 
     'maintenance' => [
-        'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
-        'store' => env('APP_MAINTENANCE_STORE', 'database'),
+        'driver'  => env('APP_MAINTENANCE_DRIVER', 'file'),
+        'store'   => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
 ];
